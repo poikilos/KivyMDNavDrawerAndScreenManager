@@ -16,6 +16,7 @@ class ContentNavigationDrawer(BoxLayout):
 
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
+    target = StringProperty()
 
 
 class DrawerList(ThemableBehavior, MDList):
@@ -35,30 +36,21 @@ class NavDrawerAndScreenManagerApp(MDApp):
     def build(self):
         return Builder.load_file("main.kv")
 
-    def openScreen1(self, itemdrawer):
-        # print("TOGGLE: {}".format(event))  # ItemDrawer object
-        # print("{}:".format(itemdrawer.text)) # "Screen ?" where ?=#
-        # print("{}:".format(itemdrawer.id))
-        # ^ itemdrawer.id is None unless it was set in the ItemDrawer
-        #   constructor call (or in kv if using kv instead).
-        # print("{}:".format(itemdrawer.name))
-        self.openScreen("screen1")
-
-    def openScreen2(self, itemdrawer):
-        self.openScreen("screen2")
-
-    def openScreen(self, screenName):
-        self.root.ids.screen_manager.current = screenName
+    def openScreen(self, itemdrawer):
+        self.openScreenName(itemdrawer.target)
         self.root.ids.nav_drawer.set_state("close")
+
+    def openScreenName(self, screenName):
+        self.root.ids.screen_manager.current = screenName
 
     def on_start(self):
         self.root.ids.content_drawer.ids.md_list.add_widget(
-            ItemDrawer(icon="screen1", text="Screen 1",
-                       on_release=self.openScreen1)
+            ItemDrawer(target="screen1", text="Screen 1",
+                       on_release=self.openScreen)
         )
         self.root.ids.content_drawer.ids.md_list.add_widget(
-            ItemDrawer(icon="screen2", text="Screen 2",
-                       on_release=self.openScreen2)
+            ItemDrawer(target="screen2", text="Screen 2",
+                       on_release=self.openScreen)
         )
 
 
