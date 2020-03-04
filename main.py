@@ -46,10 +46,12 @@ class NavDrawerAndScreenManagerApp(MDApp):
     def on_start(self):
         self.root.ids.content_drawer.ids.md_list.add_widget(
             ItemDrawer(target="screen1", text="Screen 1",
+                       icon="home-circle-outline",
                        on_release=self.openScreen)
         )
         self.root.ids.content_drawer.ids.md_list.add_widget(
             ItemDrawer(target="screen2", text="Screen 2",
+                       icon="settings-outline",
                        on_release=self.openScreen)
         )
 
