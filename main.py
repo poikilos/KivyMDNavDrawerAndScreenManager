@@ -13,8 +13,10 @@ from kivymd.uix.list import OneLineIconListItem, MDList
 class ContentNavigationDrawer(BoxLayout):
     pass
 
+
 class ItemDrawer(OneLineIconListItem):
     icon = StringProperty()
+
 
 class DrawerList(ThemableBehavior, MDList):
     def set_color_item(self, instance_item):
@@ -26,6 +28,7 @@ class DrawerList(ThemableBehavior, MDList):
                 item.text_color = self.theme_cls.text_color
                 break
         instance_item.text_color = self.theme_cls.primary_color
+
 
 class NavDrawerAndScreenManagerApp(MDApp):
 
@@ -50,11 +53,14 @@ class NavDrawerAndScreenManagerApp(MDApp):
 
     def on_start(self):
         self.root.ids.content_drawer.ids.md_list.add_widget(
-            ItemDrawer(icon="screen1", text="Screen 1", on_release=self.openScreen1)
+            ItemDrawer(icon="screen1", text="Screen 1",
+                       on_release=self.openScreen1)
         )
         self.root.ids.content_drawer.ids.md_list.add_widget(
-            ItemDrawer(icon="screen2", text="Screen 2", on_release=self.openScreen2)
+            ItemDrawer(icon="screen2", text="Screen 2",
+                       on_release=self.openScreen2)
         )
+
 
 if __name__ == "__main__":
     NavDrawerAndScreenManagerApp().run()
