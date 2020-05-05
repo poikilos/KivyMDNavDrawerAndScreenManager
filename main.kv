@@ -58,7 +58,9 @@ Screen:
                         title: "Your app"
                         md_bg_color: app.theme_cls.primary_color
                         left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
-
+                    
+                    Widget:
+                    
             Screen:
                 name: "screen2"
                 BoxLayout:
@@ -68,7 +70,8 @@ Screen:
                         title: "Screen 2"
                         md_bg_color: app.theme_cls.primary_color
                         left_action_items: [['menu', lambda x: nav_drawer.set_state("toggle")]]
-
+                    
+                    Widget:
 
         MDNavigationDrawer:
             id: nav_drawer
